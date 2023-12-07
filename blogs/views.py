@@ -1,5 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-from django.shortcuts import render, redirect
+from django.db.models import Q
+from django.shortcuts import render, redirect, get_object_or_404
 
 from blogs.models import Blog, Category
 
@@ -16,9 +17,28 @@ def posts_by_category(request, category_id):
 
     # 如果希望显示 404 错误页面使用 404
     # category = get_object_or_404(Category, pk=category_id)
-
     context = {
         'posts': posts,
         'category': category
     }
     return render(request, 'posts_by_category.html', context)
+
+
+def blogs(request, slug):
+    single_blog = get_object_or_404(Blog, slug=slug, status="Published")
+    context = {
+        'single_blog': single_blog
+    }
+    return render(request, 'blogs.html', context)
+
+
+def search(request):
+    keyword = request.GET.get('keyword')
+    get_search_blogs = Blog.objects.filter(
+        Q(title__icontains=keyword) | Q(short_description__icontains=keyword) | Q(blog_body__icontains=keyword),
+        status='Published')
+    context = {
+        'get_search_blogs': get_search_blogs,
+        'keyword': keyword
+    }
+    return render(request, 'search.html', context)
