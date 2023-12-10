@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            {# left sidebar #}
+            {% include 'dashboard/sidebar.html' %}
+            {#            Right side content #}
+            <div class="col-md-9">
+                {% for cat in categories %}
+
+                    <h6>{{ cat.category_name. }}</h6>
+
+                {% endfor %}
+               
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}

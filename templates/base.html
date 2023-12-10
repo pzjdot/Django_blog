@@ -9,6 +9,7 @@
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a1a6a63ed8.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="container">
@@ -33,7 +34,7 @@
                     <a class="btn btn-sm btn-warning" href="{% url 'login' %}">Login</a> &nbsp;
                     <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
                 {% else %}
-                    <span>You are logged in as {{ user }}</span>
+                    <a href="{% url 'dashboard' %}">Dashboard</a>
                     <a class="btn btn-sm btn-waining" href="{% url 'logout' %}">Sign out</a>
                 {% endif %}
             </div>

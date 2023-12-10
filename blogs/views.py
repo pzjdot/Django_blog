@@ -38,7 +38,6 @@ def search(request):
         Q(title__icontains=keyword) | Q(short_description__icontains=keyword) | Q(blog_body__icontains=keyword),
         status='Published')
     context = {
-        'get_search_blogs': get_search_blogs,
-        'keyword': keyword
+        'get_search_blogs': get_search_blogs
     }
     return render(request, 'search.html', context)
